@@ -12,7 +12,6 @@ import {
 
 
 const TableComp = ({ events }) => {
-  console.log(events)
   const [page, setPage] = useState(0);
   const [dataFlag, setDataFlag] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -75,7 +74,7 @@ const TableComp = ({ events }) => {
           </TableBody>
         </Table>
         <TablePagination
-          rowsPerPageOptions={20}
+          rowsPerPageOptions={[20]}
           component="div"
           count={events.length}
           rowsPerPage={rowsPerPage}

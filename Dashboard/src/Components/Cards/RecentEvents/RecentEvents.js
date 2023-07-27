@@ -6,17 +6,33 @@ import LastEvent from './LastEvent';
 import EventsTable from './EventsTable';
 import { fetchEvents } from './EventsExample';
 import PieChart from './PieChart';
+import Loading from '../../StyledComp/Loading';
 
 
 const RecentEvents = () => {
   const [allEvents, setAllEvents] = useState();
   const [allEventsFlag, setAllEventsFlag] = useState(false);
+  const [lastCurrentTime, setLastCurrentTime] = useState();
+  const [lastReporter, setLastReporter] = useState();
+  const [lastEventType, setLastEventType] = useState();
+  const [lastSeverity, setLastSeverity] = useState();
   useEffect(() => {
     const fetchData = async () => {
       const message = await fetchEvents();
-      console.log(message);
       setAllEvents(message);
       setAllEventsFlag(true);
+      const lastEvent = message.reduce((latest, currentEvent) => {
+        const latestTime = new Date(latest.currentTime).getTime();
+        const currentTime = new Date(currentEvent.currentTime).getTime();
+      
+        return currentTime > latestTime ? currentEvent : latest;
+      }, message[0]);
+      const { currentTime, reporter, eventType, severity } = lastEvent;
+      setLastCurrentTime(currentTime)
+      setLastEventType(reporter)
+      setLastReporter(eventType)
+      setLastSeverity(severity)
+      
     };
     fetchData();
   }, []);
@@ -27,14 +43,14 @@ const RecentEvents = () => {
           <Typography variant="h5" component="div" textAlign={'center'} color={'#4B0082'}>
             Recent Events
           </Typography>
-          <LastEvent currentTime={'2023-05-16'} reporter={'MMT'} eventType={"GRB"} severity={'2'} />
-          <Typography variant="body2">
+          <LastEvent currentTime={lastCurrentTime} reporter={lastReporter} eventType={lastEventType} severity={lastSeverity} />
             <EventsTable events={allEvents} />
-            {/* <PieChart/> */}
-          </Typography>
+            <PieChart allEvents={allEvents}/>
         </CardContent>
       </Card>
-    </Box> : <div>Hello World!</div>}
+    </Box> : 
+      <Loading/>
+    }
   </>
   )
 }

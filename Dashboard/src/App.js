@@ -48,6 +48,7 @@ function App() {
           <Navbar />
         </Box>
         <Routes>
+          <Route path='/' element={<></>} />
           <Route path="/recentEvents" element={<RecentEvents />} />
           <Route path="/nasa" element={<Nasa />} />
           <Route path="/sun" element={<Sun />} />

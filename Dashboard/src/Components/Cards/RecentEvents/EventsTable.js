@@ -8,7 +8,7 @@ import SearchRecentEvents from './SearchRecentEvents';
 
 
 const EventsTable = ({ events }) => {
-  console.log(events);
+
   // const [allEvents, setAllEvents] = useState('');
   const [eventsToShow, setEventsToShow] = useState('');
   const [eventDate, setEventDate] = useState("");
@@ -63,14 +63,13 @@ const EventsTable = ({ events }) => {
         (!checkBoxFlags[4] || item.severity === Number(severity))
       );
     });
-
     setEventsToShow(filteredList);
   }
 
   const handleChange = (event) => {
     const order = event.target.value
     setSelectedOption(order);
-    events.sort((a, b) => {
+    const temp = events.sort((a, b) => {
       switch (order) {
         case 1:
           return a.currentTime.localeCompare(b.currentTime);
@@ -84,6 +83,7 @@ const EventsTable = ({ events }) => {
           return 0;
       }
     });
+    setEventsToShow(temp);
 
   };
 

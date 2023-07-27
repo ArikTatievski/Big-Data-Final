@@ -5,6 +5,7 @@ import { Typography, Box } from '@mui/material'
 import NasaTable from './NasaTable';
 import { fetchNasaAPI } from './NasaEvents'
 import Graph from './Graph';
+import Loading from '../../StyledComp/Loading';
 
 
 const Nasa = () => {
@@ -56,14 +57,17 @@ const Nasa = () => {
                         <Typography variant="h5" component="div" textAlign={'center'} color={'#4B0082'}>
                             NASA
                         </Typography>
-                        <Typography variant="body2" color={'#4B0082'}>
-                            <NasaTable events={allEvents} />
-                            <Graph counts={hourlyCounts} />
-                        </Typography>
+                        {/* <Typography variant="body2" color={'#4B0082'}> */}
+                        <NasaTable events={allEvents} />
+                        <Typography textAlign={'center'} marginTop={'1%'}>Hourly Event Count Table</Typography>
+                        <Graph counts={hourlyCounts} />
+                        {/* </Typography> */}
                     </CardContent>
                 </Card>
             </Box>
-                : <div>Hello World!</div>}
+                : 
+                <Loading/>
+                }
 
         </>
     )

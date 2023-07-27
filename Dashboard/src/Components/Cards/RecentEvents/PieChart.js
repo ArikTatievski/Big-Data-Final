@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { fetchEvents } from './EventsExample';
+// import { fetchEvents } from './EventsExample';
 
-const PieChart = () => {
-  const [allEvents, setAllEvents] = useState(fetchEvents());
+const PieChart = ({allEvents}) => {
+  // const [allEvents, setAllEvents] = useState(fetchEvents());
   const [series, setSeries] = useState([44, 55, 13, 43, 22]);
   const [options, setOptions] = useState({
     chart: {
@@ -27,14 +27,16 @@ const PieChart = () => {
   });
 
   useEffect(() => {
+    console.log(allEvents)
+    const filteredEvents = allEvents;
     // Filter events within the last 24 hours
-    const filteredEvents = allEvents.filter(event => {
-      const currentTime = new Date();
-      const eventTime = new Date(event.currentTime);
-      const timeDiff = currentTime - eventTime;
-      const hoursDiff = Math.floor(timeDiff / (1000 * 60 * 60));
-      return hoursDiff <= 24;
-    });
+    // const filteredEvents = allEvents.filter(event => {
+    //   const currentTime = new Date();
+    //   const eventTime = new Date(event.currentTime);
+    //   const timeDiff = currentTime - eventTime;
+    //   const hoursDiff = Math.floor(timeDiff / (1000 * 60 * 60));
+    //   return hoursDiff <= 24;
+    // });
 
     // Update the series and labels based on the filtered events
     const severityCounts = {};
@@ -56,7 +58,7 @@ const PieChart = () => {
   }, [allEvents]);
 
 
-
+  // console.log(series)
   return (
     <div id="chart" style={{ display: 'flex', justifyContent: 'center', marginTop: '5%' }}>
       <ReactApexChart options={options} series={series} type="pie" width={380} />

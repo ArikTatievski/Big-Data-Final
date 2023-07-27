@@ -58,7 +58,7 @@ const NasaTable = ({ events }) => {
   const handleChange = (event) => {
     const order = event.target.value
     setSelectedOption(order);
-    allEvents.sort((a, b) => {
+    const temp = allEvents.sort((a, b) => {
       switch (order) {
         case 1:
           return a.id.localeCompare(b.id);
@@ -72,7 +72,7 @@ const NasaTable = ({ events }) => {
           return 0;
       }
     });
-
+    setEventsToShow(temp)
   };
 
 
@@ -130,7 +130,7 @@ const NasaTable = ({ events }) => {
         <TablePagination
           rowsPerPageOptions={[20]}
           component="div"
-          count={events.length}
+          count={allEvents.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

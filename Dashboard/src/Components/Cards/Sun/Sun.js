@@ -9,6 +9,7 @@ import setImg from '../../../img/Sunset.jpg'
 import transitImg from '../../../img/Transit.jpg'
 import EventsTable from './EventsTable';
 import { fetchWebScrap } from './SunInfo'
+import Loading from '../../StyledComp/Loading';
 
 const Sun = () => {
   const [dataFlag, setDataFlag] = useState(false);
@@ -78,7 +79,9 @@ const Sun = () => {
             </CardContent>
           </Card>
         </Box>
-        : <div>Hello World!</div>}
+        : 
+        <Loading/>
+        }
 
     </>
   );
