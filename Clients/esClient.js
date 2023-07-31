@@ -2,7 +2,7 @@ const { EventHubConsumerClient } = require("@azure/event-hubs");
 const elasticsearch = require('elasticsearch')
 
 // Azure configuration
-const connectionString = "Endpoint=sb://test12322.servicebus.windows.net/;SharedAccessKeyName=Consumer;SharedAccessKey=RHC8j+BUj79HlKc0PXqoUbEpfzeOByiBB+AEhOauiJY=;EntityPath=simulator";
+const connectionString = "Endpoint=sb://nasasimulator.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=dODcMf8IkZFDIUFLc++sQWeM7eGO7KwGQ+AEhN8ioAk=";
 const eventHubName = "simulator";
 const consumerClient = new EventHubConsumerClient("$Default", connectionString, eventHubName);
 
@@ -57,5 +57,5 @@ async function startConsumer() {
 }
 
 startConsumer().catch((err) => {
-    console.log("Error starting the consumer: ", err);
+    console.log("Error starting the consumer: ", err);
 });

@@ -15,7 +15,7 @@ const TableComp = ({ events }) => {
   const [page, setPage] = useState(0);
   const [dataFlag, setDataFlag] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const headers = ["Event Date", "Event Time", "Reporter", "Event Type", "Severity"];
+  const headers = ["Event Date", "Event Time", "Reporter", "Event Type", "Severity", "locationRA","locationDEC"];
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -69,6 +69,8 @@ const TableComp = ({ events }) => {
                   <TableCell>{event.reporter}</TableCell>
                   <TableCell>{event.eventType}</TableCell>
                   <TableCell>{event.severity}</TableCell>
+                  <TableCell>{event.locationRA}</TableCell>
+                  <TableCell>{event.locationDEC}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

@@ -8,6 +8,7 @@ export const fetchEvents = async () => {
     });
     const jsonData = await response.json();
     const parsedData = jsonData.hits.hits.map((hit) => JSON.parse(hit._source.message));
+    console.log("check")
     return parsedData
   } catch (error) {
     console.error('Error fetching data:', error);

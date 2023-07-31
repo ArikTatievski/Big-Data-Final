@@ -5,7 +5,7 @@ const Redis = require('ioredis');
 const redisUrl = 'redis://default:7ac367c7038841a0b627bb6ff84d158d@eu1-clean-ram-39644.upstash.io:39644';
 const client = new Redis(redisUrl);
 
-const connectionString = "Endpoint=sb://test12322.servicebus.windows.net/;SharedAccessKeyName=Consumer;SharedAccessKey=RHC8j+BUj79HlKc0PXqoUbEpfzeOByiBB+AEhOauiJY=;EntityPath=simulator";
+const connectionString = "Endpoint=sb://nasasimulator.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=dODcMf8IkZFDIUFLc++sQWeM7eGO7KwGQ+AEhN8ioAk=";
 const eventHubName = "simulator";
 const producer = new EventHubProducerClient(connectionString, eventHubName);
 
