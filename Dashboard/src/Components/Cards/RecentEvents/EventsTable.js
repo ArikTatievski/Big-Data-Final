@@ -117,6 +117,11 @@ const EventsTable = ({ events }) => {
     setEventsToShow(temp);
   };
 
+  const handleSearchBtn = () => {
+    const list = handleSearch();
+    setEventsToShow(list);
+  }
+
   return (
     <>
       <Box display={"flex"}>
@@ -142,7 +147,7 @@ const EventsTable = ({ events }) => {
       <SearchRecentEvents
         checkBoxFlags={checkBoxFlags}
         onCheckBoxChange={handleBooleanChange}
-        onClick={handleSearch}
+        onClick={handleSearchBtn}
         eventDate={eventDate}
         eventsTime={eventsTime}
         reporter={reporter}
